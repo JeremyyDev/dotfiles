@@ -1,0 +1,20 @@
+deletewindow
+restart
+deletewindow
+delkmap
+delkmap 1
+delkmap 
+delkmap 0
+describekey
+maxundos
+clear
+hid
+hide
+c
+c 0
+minus
+select -
+reset
+restart
+x
+restart

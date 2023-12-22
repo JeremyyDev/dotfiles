@@ -1,0 +1,75 @@
+#!/bin/sh
+
+escape C-t
+set ignoreresizehints 1
+set barinpadding 0
+set barpadding 16 13
+set onlyborder 1
+set bgcolor #282828
+set fgcolor #ebdbb2
+set barcolor #1d2021
+set barborder 2
+set barbordercolor #ebdbb2
+set border 4
+set fwcolor #ebdbb2
+set bwcolor #282828
+set gap 14
+set padding 14 14 14 14
+set barsticky 1
+set bargravity nw
+set font "GohuNew"
+warp 1
+alias term exec st
+bind e exec scrot -F ~/Pictures/screenshot-`date +%F`.png
+alias volume-up exec amixer set 'Master' 5%+ unmute
+alias volume-down exec amixer set 'Master' 5%-
+alias volume-mute exec amixer set 'Master' mute
+bind space exec rofi -i -show drun -modi drun -show-icons
+definekey top Print scrot
+definekey top XF86AudioRaiseVolume volume-up
+definekey top XF86AudioLowerVolume volume-down
+definekey top XF86AudioMute volume-mute
+definekey top XF86MonBrightnessUp exec xbacklight -inc 10
+definekey top XF86MonBrightnessDown exec xbacklight -dec 10
+bind c exec Documents/Script/unlcok.sh
+bind Tab focuslast
+bind aciitilde focus
+bind g exec
+bind f exec librewolf -P
+bind l exec Documents/Script/lockscreen.sh
+bind L set barsticky 1
+bind F exec pcmanfm
+bind P term -T "ncspot cli spotify client" -e ncspot
+bind i term -T "htop cli system resource monitor" -e htop
+bind  term -T "" -e 
+bind I term -title "neofetch cli sysfetch" -hold -e pfetch
+bind N term -T "wireless network configuration" -e nmtui
+bind V vmove
+bind m nextscreen 
+bind M prevscreen
+bind B term   watch -n0 cat /sys/class/power_supply/BAT0/capacity
+exec date "+%a %b %e %H:%M" > .config/sdorfehs/bar
+exec while true; do date > ~/.config/sdorfehs/bar; sleep 1; done
+exec ~/.local/bin/bar.sh &
+exec xcompmgr
+#Monitor 120
+exec xrandr --output HDMI1 --primary --mode 1920x1080 --rate 120 --output eDP1 --off
+#Laptop
+bind O exec xrandr --output eDP1 --primary --auto --output HDMI1 --off
+bind o exec Documents/Script/screen.sh 
+#Monitor and laptop
+bind J exec xrandr --output HDMI1 --primary --mode 1920x1080 --rate 120 --rotate normal --output eDP1 --mode 1366x768 --rate 60 --rotate normal --right-of HDMI1 
+#Wallpaper
+exec feh --bg-fill Pictures/ismail-inceoglu12-1.jpg
+#Desktop Settings
+bind z set font "GohuNew"
+bind w exec feh --bg-fill Pictures/ismail-inceoglu12-1.jpg
+bind y term alsamixer
+#Vertical Monitor Setup
+#exec xrandr --output HDMI1 --mode 1366x768 --rotate right --right-of eDP1
+bind C exec Documents/Script/vertical.sh
+exec Documents/Script/autolock.sh
+bind v exec Documents/Script/vscodium.sh
+exec Documents/Script/kde.sh
+exec Documents/Script/start.sh
+exec sleep 2; sdorfehs -c "vselect 1"
